@@ -1,0 +1,203 @@
+
+/*
+===========================
+CONTENTS:
+
+01 General
+02 Typography
+03 Non-semantic
+04 Navbar
+05 Page sections
+06 Footer
+07 Icons
+08 Buttons
+09 Media queries 
+===========================
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+/* =========================================================
+01. General
+============================================================ */
+  body {
+  color: white;
+  font-family:'Open Sans', Arial, sans-serif;
+  text-align: center;
+  }
+
+  p {font-size: 16px;}
+
+/* Styles for input types */
+  input {
+      margin: 5px 0;
+  }
+  /* Only applied to submit type input */
+  input[type=submit], input[type=text], input[type=password] {
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      color: black;
+      letter-spacing: 1px;
+      width: 50%;
+  }
+
+  input[type=submit] {
+    border: 1.1px solid gold;
+    margin: 0 40%;
+    display: inline-block;
+    color: white;
+  }
+  /* Change styles when the input is clicked */
+  input:focus {
+      color: white;
+      background-color: gold;
+  }
+  textarea:focus {
+      color: white;
+      background-color: #555;
+  }
+
+/* Erase underline of links */
+  a:link, a:visited, a:hover, a:active { text-decoration: none; color: white; }
+
+/* Common styles */
+  .margin {margin-bottom: 45px;}
+
+  .button {
+    background-opacity: 0;
+    color: black;
+    padding: 5px 50px;
+    border: 1.1px solid gold;
+    border-radius: 40px;
+    text-align: center;
+    margin: 7px 2px;
+    display: inline-block;
+    width: 150px;
+  }
+  .button:hover, .button:focus{
+    background-color: gold;
+    color: white;
+  }
+
+/* Used as text boxes */
+  .box {
+      max-width: 90%;
+      margin: auto;
+      color: #1a1a1a;
+      text-align: left;
+      font-size: 15px;
+      background-color: white;
+  }
+
+/* background-color, text-color for each section */
+  .bg2 { 
+      background-color: white; /* White */
+      color: #1a1a1a;
+  }
+  .bg3 { 
+      background-color: #ffffff; /* White */
+      color: #555555;
+  }
+  .bg4 { 
+      background-color: #daa520; /* GoldenRod */
+      color: #fff;
+  }
+
+  /* Full width container */
+  .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 70px;
+  }
+/* =========================================================
+02. Typography
+============================================================ */
+
+h2 {
+  line-height: 1.1em;
+}
+/* =========================================================
+04. Navigation
+============================================================ */
+  /* Used as menu bar */
+  .navbar {
+      position: fixed;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 15px;
+      letter-spacing: 1px;
+      background: #1a1a1a;
+  }
+
+  .navbar-brand{
+      font-family: 'Exo', sans-serif;
+      font-size: 20pt;
+      font-style: italic;
+      transform: translateX(-50%);
+      left: 50%;
+      position: absolute;
+  }
+
+  .navbar-inverse .navbar-toggle .icon-bar {
+      background-color: gold;
+  }
+
+  /* Change color when hovered */
+  .navbar-nav  li a:hover {
+      color: gold !important;
+  }
+
+/* =========================================================
+05. Page sections
+============================================================ */
+
+.bg1 { 
+      background-color: #1a1a1a;
+  }
+
+.box {
+      
+  }
+
+/* === section team ===*/
+section.section {
+  padding: 50px 0 80px;
+}
+section.section h2 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  letter-spacing: -1px;
+}
+
+section#team {
+  background: #e6e6e6;
+  color: #333333;
+  text-align: center;
+}
+
+section#team h2 {
+  color: #321f2b;
+}
+.people h3 {
+  margin-bottom:10px;
+  font-weight:700;
+  letter-spacing: -1px;
+}
+
+.team-thumb {
+  margin-top: 26px;
+  text-align: center;
+}
+
+/* =========================================================
+06. Footer
+============================================================ */
+
+footer {
+  padding: 100px 100px;
+}

@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LOGIN</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- External style sheet -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo:800i" rel="stylesheet">
+  <!-- Bootstrap CDN and jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Chosen -->
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
+  <style>
+  
+/* Set backfround image for full size */
+
+.navbar {
+  position: relative;
+}
+.bg1 {
+  background-color: #1a1a1a;
+}
+.box {
+  max-width: 100%;
+}
+
+ .container-fluid {
+      padding: 10px 10px;
+  }
+
+ input[type=submit] {
+    border: 2px solid #e6e6e6;
+    background-color: gold;
+    color: white;
+    width: 50px;
+    height: 50px;
+  }
+  input:focus {
+  
+  }
+
+  .item h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+  }
+  .item span {
+      font-style: normal;
+  }
+  </style>
+</head>
+
+<body id="CabZzang" data-spy="scroll" data-target=".navbar" data-offset="20">
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index2.html" style="color: white;">CabZzang</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- First Container (Search Section) -->
+<div class="container-fluid bg1 text-center">
+
+    <form action = "signup.php" method = "POST">
+    <input type = "text" name = "first" placeholder = "Firstname"><br>
+    <input type = "text" name = "last" placeholder = "Lastname"><br>
+    <input type = "text" name = "uid" placeholder = "Username"><br>
+    <input type = "password" name = "pwd" placeholder = "Password"><br>
+    <button type = "submit">Sign up</button>
+  </form>
+</div>
+
+
+<!-- Footer -->
+<footer class="container-fluid bg4 text-center">
+  <p>Copyright &copy;Sukhyun Lee</p> 
+</footer>
+
+</body>
+</html>

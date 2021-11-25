@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>다음 지도 API</title>
+</head>
+<body>
+
+	<div id="map" style="width:500px;height:350px;"></div>
+
+	<script src="//apis.daum.net/maps/maps3.js?apikey=5af18f88fa2dafd0e2487b679d11b50b"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		    mapOption = {
+		        center: new daum.maps.LatLng(37.5702, 126.92007), // 지도의 중심좌표
+		        level: 10, // 지도의 확대 레벨
+		        mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+		    };
+		// 지도를 생성한다
+		var map = new daum.maps.Map(mapContainer, mapOption);
+		var selectedMarker = null;
+		var selectedMarker2= null;
+		// 지도에 마커를 생성하고 표시한다
+		var sincam = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.559965, 126.942345), // 신촌
+		    map: map // 마커를 표시할 지도 객체
+		});
+		var intcam = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.382800, 126.670977), // 국제 캠퍼스
+		    map: map // 마커를 표시할 지도 객체
+		});
+		var gangnamsta = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.498002, 127.027568), // 강남역
+		    map: map // 마커를 표시할 지도 객체
+		});
+		var gununi = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.540385, 127.069182), // 건대입구역
+		    map: map // 마커를 표시할 지도 객체
+		});
+		var nowonsta = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.656298, 127.063236), // 노원역
+		    map: map // 마커를 표시할 지도 객체
+		});
+		var boopyeongsta = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.489491, 126.724498), // 부평역
+		    map: map // 마커를 표시할 지도 객체
+		});
+		var sindorimsta = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.509443, 126.890805), // 신도림역
+		    map: map // 마커를 표시할 지도 객체
+		});
+		var anamsta = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.586264, 127.029027), // 안암역
+		    map: map // 마커를 표시할 지도 객체
+		});
+
+		var illsansta = new daum.maps.Marker({
+				position: new daum.maps.LatLng(37.682146, 126.769467), // 일산역
+				map: map // 마커를 표시할 지도 객체
+		});
+		var jamsilsta = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(37.513304, 127.100134), // 잠실역
+		    map: map // 마커를 표시할 지도 객체
+		});
+
+		var iwContent = '<div style="text-align : right; padding:3px;">출발지</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+// 인포윈도우를 생성합니다
+		var infowindow = new daum.maps.InfoWindow({
+		    content : iwContent,
+		    removable : iwRemoveable
+		});
+
+
+
+		daum.maps.event.addListener(sincam, 'click', function(){
+				if(selectedMarker==sincam)
+				{
+					alert('취소하였습니다.');
+					document.getElementById('start').innerHTML = "From: "
+					selectedMarker = null;
+				}
+				else if(selectedMarker!=sincam && selectedMarker2!=sincam)
+				{
+					if(selectedMarker==null)
+					{
+						alert('신촌을 선택하셨습니다!');
+						document.getElementById('start').innerHTML = "From: 신촌"
+						selectedMarker = sincam;
+					}
+					else {
+						alert('신촌을 선택하셨습니다!');
+						document.getElementById('finish').innerHTML = "To: 신촌"
+						selectedMarker2 = sincam;
+					}
+				}
+				else if(selectedMarker2==sincam)
+				{
+					alert('취소하였습니다.');
+					document.getElementById('finish').innerHTML = "To: "
+					selectedMarker2=null;
+				}
+		});
+
+
+		daum.maps.event.addListener(intcam, 'click', function() {
+			if(selectedMarker==intcam)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=intcam && selectedMarker2!=intcam)
+			{
+				if(selectedMarker==null)
+				{
+					alert('국제캠퍼스를 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 국제캠퍼스"
+					selectedMarker = intcam;
+				}
+				else {
+					alert('국제캠퍼스를 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 국제캠퍼스"
+					selectedMarker2 = intcam;
+				}
+			}
+			else if(selectedMarker2==intcam)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(gangnamsta, 'click', function() {
+			if(selectedMarker==gangnamsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=gangnamsta && selectedMarker2!=gangnamsta)
+			{
+				if(selectedMarker==null)
+				{
+					alert('강남역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 강남역"
+					selectedMarker = gangnamsta;
+				}
+				else {
+					alert('강남역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 강남역"
+					selectedMarker2 = gangnamsta;
+				}
+			}
+			else if(selectedMarker2==gangnamsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(gununi, 'click', function() {
+			if(selectedMarker==gununi)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=gununi && selectedMarker2!=gununi)
+			{
+				if(selectedMarker==null)
+				{
+					alert('건대입구역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 건대입구역"
+					selectedMarker = gununi;
+				}
+				else {
+					alert('건대입구역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 건대입구역"
+					selectedMarker2 = gununi;
+				}
+			}
+			else if(selectedMarker2==gununi)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(nowonsta, 'click', function() {
+			if(selectedMarker==nowonsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=nowonsta && selectedMarker2!=nowonsta)
+			{
+				if(selectedMarker==null)
+				{
+					alert('노원역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 노원역"
+					selectedMarker = nowonsta;
+				}
+				else {
+					alert('노원역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 노원역"
+					selectedMarker2 =nowonsta;
+				}
+			}
+			else if(selectedMarker2==nowonsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(boopyeongsta, 'click', function() {
+			if(selectedMarker==boopyeongsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=boopyeongsta && selectedMarker2!=boopyeongsta)
+			{
+				if(selectedMarker==null)
+				{
+					alert('부평역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 부평역"
+					selectedMarker = boopyeongsta;
+				}
+				else {
+					alert('부평역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 부평역"
+					selectedMarker2 =boopyeongsta;
+				}
+			}
+			else if(selectedMarker2==boopyeongsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(sindorimsta, 'click', function() {
+			if(selectedMarker==sindorimsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=sindorimsta && selectedMarker2!=sindorimsta)
+			{
+				if(selectedMarker==null)
+				{
+					alert('신도림역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 신도림역"
+					selectedMarker = sindorimsta;
+				}
+				else {
+					alert('신도림역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 신도림역"
+					selectedMarker2 =sindorimsta;
+				}
+			}
+			else if(selectedMarker2==sindorimsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(anamsta, 'click', function() {
+			if(selectedMarker==anamsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=anamsta && selectedMarker2!=anamsta)
+			{
+				if(selectedMarker==null)
+				{
+					alert('안암역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 안암역"
+					selectedMarker = anamsta;
+				}
+				else {
+					alert('안암역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 안암역"
+					selectedMarker2 =anamsta;
+				}
+			}
+			else if(selectedMarker2==anamsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(illsansta, 'click', function() {
+			if(selectedMarker==illsansta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=illsansta && selectedMarker2!=illsansta)
+			{
+				if(selectedMarker==null)
+				{
+					alert('일산역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 일산역"
+					selectedMarker = illsansta;
+				}
+				else {
+					alert('일산역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 일산역"
+					selectedMarker2 =illsansta;
+				}
+			}
+			else if(selectedMarker2==illsansta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+		});
+		daum.maps.event.addListener(jamsilsta, 'click', function() {
+			if(selectedMarker==jamsilsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('start').innerHTML = "From: "
+				selectedMarker = null;
+			}
+			else if(selectedMarker!=jamsilsta && selectedMarker2!=jamsilsta)
+			{
+				if(selectedMarker==null)
+				{
+					alert('잠실역을 선택하셨습니다!');
+					document.getElementById('start').innerHTML = "From: 잠실역"
+					selectedMarker = jamsilsta;
+				}
+				else {
+					alert('잠실역을 선택하셨습니다!');
+					document.getElementById('finish').innerHTML = "To: 잠실역"
+					selectedMarker2 =jamsilsta;
+				}
+			}
+			else if(selectedMarker2==jamsilsta)
+			{
+				alert('취소하였습니다.');
+				document.getElementById('finish').innerHTML = "To: "
+				selectedMarker2=null;
+			}
+			if(selectedMarker != null && selectedMarker2!=null)
+			{
+				window.alert("방 목록 페이지로 넘어갑니다.");
+			}
+		});
+
+
+
+		var content2 = ['신촌', '국제캠퍼스', '강남역', '건대입구역', '노원역', '부평역', '신도림역', '안암역', '일산역', '잠실역']
+		// 마커에 mouseover 이벤트를 등록한다
+		var infowindow2 = new daum.maps.InfoWindow({
+		    content : content2[0],
+		    removable : iwRemoveable
+		});
+
+		daum.maps.event.addListener(sincam, 'mouseover', function() {
+			infowindow2.open(map, sincam);
+		});
+		daum.maps.event.addListener(sincam, 'mouseout', function(){
+			infowindow2.close();
+		});
+
+
+		var infowindow3 = new daum.maps.InfoWindow({
+		    content : content2[1],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(intcam, 'mouseover', function() {
+		    infowindow3.open(map, intcam);
+		});
+		daum.maps.event.addListener(intcam, 'mouseout', function(){
+			infowindow3.close();
+		});
+
+
+		var infowindow4 = new daum.maps.InfoWindow({
+		    content : content2[2],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(gangnamsta, 'mouseover', function() {
+		    infowindow4.open(map, gangnamsta);
+		});
+		daum.maps.event.addListener(gangnamsta, 'mouseout', function(){
+			infowindow4.close();
+		});
+
+		var infowindow5= new daum.maps.InfoWindow({
+		    content : content2[3],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(gununi, 'mouseover', function() {
+		    infowindow5.open(map, gununi);
+		});
+		daum.maps.event.addListener(gununi, 'mouseout', function(){
+			infowindow5.close();
+		});
+
+		var infowindow6 = new daum.maps.InfoWindow({
+		    content : content2[4],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(nowonsta, 'mouseover', function() {
+		    infowindow6.open(map, nowonsta);
+		});
+		daum.maps.event.addListener(nowonsta, 'mouseout', function(){
+			infowindow6.close();
+		});
+		var infowindow7= new daum.maps.InfoWindow({
+		    content : content2[5],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(boopyeongsta, 'mouseover', function() {
+		    infowindow7.open(map, boopyeongsta);
+		});
+		daum.maps.event.addListener(boopyeongsta, 'mouseout', function(){
+			infowindow7.close();
+		});
+		var infowindow8 = new daum.maps.InfoWindow({
+		    content : content2[6],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(sindorimsta, 'mouseover', function() {
+		    infowindow8.open(map, sindorimsta);
+		});
+		daum.maps.event.addListener(sindorimsta, 'mouseout', function(){
+			infowindow8.close();
+		});
+		var infowindow9 = new daum.maps.InfoWindow({
+		    content : content2[7],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(anamsta, 'mouseover', function() {
+		    infowindow9.open(map, anamsta);
+		});
+		daum.maps.event.addListener(anamsta, 'mouseout', function(){
+			infowindow9.close();
+		});
+		var infowindow10 = new daum.maps.InfoWindow({
+		    content : content2[8],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(illsansta, 'mouseover', function() {
+		    infowindow10.open(map, illsansta);
+		});
+		daum.maps.event.addListener(illsansta, 'mouseout', function(){
+			infowindow10.close();
+		});
+		var infowindow11 = new daum.maps.InfoWindow({
+		    content : content2[9],
+		    removable : iwRemoveable
+		});
+		daum.maps.event.addListener(jamsilsta, 'mouseover', function() {
+		    infowindow11.open(map, jamsilsta);
+		});
+		daum.maps.event.addListener(jamsilsta, 'mouseout', function(){
+			infowindow11.close();
+		});
+
+		// 마커에 mouseout 이벤트 등록
+
+		// 커스텀 오버레이를 생성하고 지도에 표시한다
+		/*var customOverlay = new daum.maps.CustomOverlay({
+			map: map,
+			clickable : true, // 커스텀 오버레이 클릭 시 지도에 이벤트를 전파하지 않도록 설정한다
+			content: '<div style="padding:0 5px;background:#fff;">rr</div>',
+			position: new daum.maps.LatLng(37.513304, 127.100134), // 커스텀 오버레이를 표시할 좌표
+			xAnchor: 0.5, // 컨텐츠의 x 위치
+			yAnchor: 3, // 컨텐츠의 y 위치
+			zIndex: 1
+		});
+		customOverlay.setMap(map);*/
+
+	</script>
+
+	<p id ="start">From: </p>
+	<p id = "finish">To: </p>
+	<form action = "chatroom" method = "post">
+	<button id="go">Go</button>
+</form>
+
+</body>
+</html>
